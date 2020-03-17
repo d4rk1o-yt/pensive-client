@@ -3,19 +3,9 @@ directories:
   buildResources: build
 appId: ml.connordavis.pensive
 asar: true
-dmg:
-  contents:
-    - x: 110
-      'y': 150
-    - x: 240
-      'y': 150
-      type: link
-      path: /Applications
-linux:
-  target:
-    - AppImage
-    - deb
 win:
-  target: NSIS
+  target: squirrel
   icon: build/icon.ico
+  publish:
+    - github
 electronVersion: 7.1.14

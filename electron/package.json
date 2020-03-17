@@ -1,20 +1,23 @@
 {
   "name": "pensive-desktop",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "This is a end-to-end encrypted messaging platform. Your messages can't be seen by third parties.",
   "main": "index.js",
+  "repository": "https://github.com/d4rk1o-yt/pensive-client.git",
   "scripts": {
     "electron:start": "electron ./",
     "pack": "electron-builder --dir",
     "dist": "electron-builder --x64 --windows",
-    "gh-publish": "electron-builder --x64 --windows -p always"
+    "gh-publish": "electron-builder --x64 --windows -p always",
+    "release": "build"
   },
   "build": {
     "appId": "ml.connordavis.pensive",
     "asar": true,
     "win": {
-      "target": "squirrelWindows",
-      "icon": "build/icon.ico"
+      "target": "squirrel",
+      "icon": "build/icon.ico",
+      "publish": ["github"]
     }
   },
   "dependencies": {

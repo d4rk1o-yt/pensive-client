@@ -4,8 +4,6 @@ if (require("electron-squirrel-startup")) return;
 const { autoUpdater } = require("electron-updater");
 const log = require("electron-log");
 
-const ProgressBar = require("electron-progressbar");
-
 const {
   app,
   BrowserWindow,
@@ -85,13 +83,6 @@ async function createWindow() {
     mainWindow = null;
   });
 
-  var progressBar = new ProgressBar({
-    indeterminate: false,
-    text: "Preparing data...",
-    detail: "Wait..."
-  });
-  progressBar.setCompleted();
-
   const sendStatusToWindow = data => {
     if (data.type === "text") {
       log.info(data.text);
@@ -101,25 +92,6 @@ async function createWindow() {
           body: data.text
         });
         notification.show();
-      }
-    } else if (data.type === "progress") {
-      log.info(data.text);
-      if (mainWindow) {
-        progressBar
-          .on("completed", function() {
-            console.info(`completed...`);
-            progressBar.detail = "Task completed. Exiting...";
-          })
-          .on("aborted", function(value) {
-            console.info(`aborted... ${value}`);
-          })
-          .on("progress", function(value) {
-            progressBar.detail = `Value ${data.transferred} out of ${
-              progressBar.getOptions().maxValue
-            }...`;
-          });
-
-        progressBar.value += 1;
       }
     }
   };
@@ -135,7 +107,7 @@ async function createWindow() {
     progressBar.setCompleted();
   });
   autoUpdater.on("update-not-available", info => {
-    sendStatusToWindow({ text: "Update not available.", type: "text" });
+    sendStatusToWindow({ text: "You are using the latest version.", type: "text" });
     progressBar.setCompleted();
   });
   autoUpdater.on("error", err => {

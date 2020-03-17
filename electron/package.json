@@ -8,7 +8,7 @@
     "electron:start": "electron ./",
     "pack": "electron-builder --dir",
     "dist": "electron-builder --x64 --windows",
-    "gh-publish": "electron-builder --x64 --windows -p always && electron-builder --x64 --linux -p always && electron-builder --x64 --mac -p always",
+    "gh-publish": "electron-builder --x64 --linux -p always",
     "release": "build"
   },
   "build": {
@@ -57,6 +57,10 @@
     "url": "https://github.com/Zamiell/isaac-racing-client/issues"
   },
   "homepage": "https://pensive.connordavis.ml",
-  "author": "Connor Davis",
+  "author": {
+    "name": "Connor Davis",
+    "email": "d4rk1oyt@gmail.com",
+    "url": "https://connordavis.ml"
+  },
   "license": "GPL-3.0"
 }

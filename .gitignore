@@ -3,3 +3,6 @@ android
 ios
 dist
 public/downloads
+electron/pensive-client
+electron/dist
+electron/node_modules

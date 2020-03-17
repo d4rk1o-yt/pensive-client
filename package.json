@@ -1,15 +1,12 @@
 {
   "name": "pensive-client",
-  "version": "0.2.1",
+  "version": "0.2.3",
   "description": "This is a end-to-end encrypted messaging platform. Your messages can't be seen by third parties.",
   "main": "client.js",
   "scripts": {
-    "build:electron": "cd app && ng build && cd .. && npm run run:electron",
-    "build:electron-aot": "cd app && ng build --prod && cd .. && npm run run:electron",
-    "run:electron": "npx cap copy electron && npx cap copy electron && npx cap open electron",
-    "build-windows": "electron-packager electron/ Pensive --platform=win32 --arch=ia32 --win32metadata.CompanyName=Pensive --win32metadata.ProductName=Pensive --executable-name=pensive-desktop --out=dist/ --asar --overwrite",
-    "build-linux": "electron-packager electron/ Pensive --platform=linux --arch=x64 --out=dist/ --asar --overwrite",
-    "build-mac": "electron-packager electron/ Pensive --platform=darwin --out=dist/ --asar --overwrite"
+    "build:electron": "cd app && ng build && cd .. && npx cap copy electron",
+    "build:electron-aot": "cd app && ng build --prod && cd ..",
+    "publish:electron": "cd electron && npm run gh-publish && cd .."
   },
   "keywords": [],
   "author": "Connor Davis",

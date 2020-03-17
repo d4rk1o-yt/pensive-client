@@ -13,6 +13,7 @@
   },
   "build": {
     "appId": "ml.connordavis.pensive",
+    "productName": "Pensive",
     "asar": true,
     "win": {
       "target": "squirrel",

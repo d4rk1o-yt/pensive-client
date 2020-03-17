@@ -90,6 +90,7 @@ async function createWindow() {
     text: "Preparing data...",
     detail: "Wait..."
   });
+  progressBar.setCompleted();
 
   const sendStatusToWindow = data => {
     if (data.type === "text") {
@@ -118,9 +119,7 @@ async function createWindow() {
             }...`;
           });
 
-        if (!progressBar.isCompleted()) {
-          progressBar.value += 1;
-        }
+        progressBar.value += 1;
       }
     }
   };

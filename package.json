@@ -9,8 +9,9 @@
     "publish:electron": "cd electron && npm run gh-publish && cd .."
   },
   "keywords": [],
+  "homepage": "https://pensive.connordavis.ml",
   "author": "Connor Davis",
-  "license": "ISC",
+  "license": "GPL-3.0",
   "dependencies": {
     "@capacitor/android": "^1.5.1",
     "@capacitor/cli": "^1.5.1",

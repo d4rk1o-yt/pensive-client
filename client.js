@@ -39,7 +39,7 @@ app.get("", (request, response) => {
 
 app.get("/download", (request, response) => {
   if (request.query['platform'] === "windows") {
-    response.download(path.join(__dirname, "public", "downloads", "Pensive-Setup.exe"));
+    response.download(path.join(__dirname, "public", "downloads", "Pensive Setup.exe"));
     return;
   }
 

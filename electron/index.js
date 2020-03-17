@@ -4,7 +4,15 @@ if (require("electron-squirrel-startup")) return;
 const { autoUpdater } = require("electron-updater");
 const log = require("electron-log");
 
-const { app, BrowserWindow, ipcMain, dialog } = require("electron");
+const ProgressBar = require("electron-progressbar");
+
+const {
+  app,
+  BrowserWindow,
+  ipcMain,
+  dialog,
+  Notification
+} = require("electron");
 const {
   CapacitorSplashScreen,
   configCapacitor
@@ -65,19 +73,97 @@ async function createWindow() {
     mainWindow.webContents.on("dom-ready", () => {
       mainWindow.show();
       mainWindow.webContents.openDevTools();
+      sendStatusToWindow({ text: "Hello", type: "text" });
     });
   }
 
   // Emitted when the window is closed.
-  mainWindow.on("closed", function () {
+  mainWindow.on("closed", function() {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null;
   });
 
+  var progressBar = new ProgressBar({
+    indeterminate: false,
+    text: "Preparing data...",
+    detail: "Wait..."
+  });
+
+  const sendStatusToWindow = data => {
+    if (data.type === "text") {
+      log.info(data.text);
+      if (mainWindow) {
+        const notification = new Notification({
+          title: "Pensive",
+          body: data.text
+        });
+      }
+    } else if (data.type === "progress") {
+      log.info(data.text);
+      if (mainWindow) {
+        progressBar
+          .on("completed", function() {
+            console.info(`completed...`);
+            progressBar.detail = "Task completed. Exiting...";
+          })
+          .on("aborted", function(value) {
+            console.info(`aborted... ${value}`);
+          })
+          .on("progress", function(value) {
+            progressBar.detail = `Value ${data.transferred} out of ${
+              progressBar.getOptions().maxValue
+            }...`;
+          });
+
+        if (!progressBar.isCompleted()) {
+          progressBar.value += 1;
+        }
+      }
+    }
+  };
+
   // trigger autoupdate check
   autoUpdater.checkForUpdates();
+
+  autoUpdater.on("checking-for-update", () => {
+    sendStatusToWindow({ text: "Checking for update...", type: "text" });
+  });
+  autoUpdater.on("update-available", info => {
+    sendStatusToWindow({ text: "Update available.", type: "text" });
+  });
+  autoUpdater.on("update-not-available", info => {
+    sendStatusToWindow({ text: "Update not available.", type: "text" });
+  });
+  autoUpdater.on("error", err => {
+    sendStatusToWindow({
+      text: `Error in auto-updater: ${err.toString()}`,
+      type: "text"
+    });
+  });
+  autoUpdater.on("download-progress", progressObj => {
+    sendStatusToWindow({
+      speed: progressObj.bytesPerSecond,
+      percent: progressObj.percent,
+      transferred: progressObj.transferred,
+      total: progressObj.total,
+      type: "progress"
+    });
+  });
+  autoUpdater.on("update-downloaded", info => {
+    sendStatusToWindow({
+      text: "Update downloaded; will install now",
+      type: "text"
+    });
+  });
+
+  autoUpdater.on("update-downloaded", info => {
+    // Wait 5 seconds, then quit and install
+    // In your application, you don't need to wait 500 ms.
+    // You could call autoUpdater.quitAndInstall(); immediately
+    autoUpdater.quitAndInstall();
+  });
 }
 
 // This method will be called when Electron has finished
@@ -86,7 +172,7 @@ async function createWindow() {
 app.on("ready", createWindow);
 
 // Quit when all windows are closed.
-app.on("window-all-closed", function () {
+app.on("window-all-closed", function() {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== "darwin") {
@@ -94,7 +180,7 @@ app.on("window-all-closed", function () {
   }
 });
 
-app.on("activate", function () {
+app.on("activate", function() {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (mainWindow === null) {
@@ -102,50 +188,8 @@ app.on("activate", function () {
   }
 });
 
-const sendStatusToWindow = data => {
-  if (data.type === "text") {
-    log.info(data.text);
-    if (ipcMain) {
-      ipcMain.emit("notification", data.text);
-    }
-  } else if (data.type === "progress") {
-    log.info(data.text);
-    if (ipcMain) {
-      ipcMain.emit("progress", data);
-    }
-  }
-};
-
-autoUpdater.on("checking-for-update", () => {
-  sendStatusToWindow({ text: "Checking for update...", type: "text" });
-});
-autoUpdater.on("update-available", info => {
-  sendStatusToWindow({ text: "Update available.", type: "text" });
-});
-autoUpdater.on("update-not-available", info => {
-  sendStatusToWindow({ text: "Update not available.", type: "text" });
-});
-autoUpdater.on("error", err => {
-  sendStatusToWindow({ text: `Error in auto-updater: ${err.toString()}`, type: "text" });
-});
-autoUpdater.on("download-progress", progressObj => {
-  sendStatusToWindow(
-    { speed: progressObj.bytesPerSecond, percent: progressObj.percent, transferred: progressObj.transferred, total: progressObj.total, type: "progress" }
-  );
-});
-autoUpdater.on("update-downloaded", info => {
-  sendStatusToWindow({ text: "Update downloaded; will install now", type: "text" });
-});
-
-autoUpdater.on("update-downloaded", info => {
-  // Wait 5 seconds, then quit and install
-  // In your application, you don't need to wait 500 ms.
-  // You could call autoUpdater.quitAndInstall(); immediately
-  autoUpdater.quitAndInstall();
-});
-
 // Define any IPC or other custom functionality below here
-var handleStartupEvent = function () {
+var handleStartupEvent = function() {
   if (process.platform !== "win32") {
     return false;
   }

@@ -1,6 +1,6 @@
 {
   "name": "Pensive",
-  "version": "0.4.2",
+  "version": "0.4.5",
   "description": "This is a end-to-end encrypted messaging platform. Your messages can't be seen by third parties.",
   "main": "index.js",
   "repository": "https://github.com/d4rk1o-yt/pensive-client.git",
@@ -18,7 +18,9 @@
     "win": {
       "target": "nsis-web",
       "icon": "build/icon.ico",
-      "publish": ["github"]
+      "publish": [
+        "github"
+      ]
     }
   },
   "dependencies": {
@@ -28,6 +30,8 @@
     "electron-installer-squirrel-windows": "^1.3.0",
     "electron-is-dev": "^1.1.0",
     "electron-log": "^4.1.0",
+    "electron-notify": "^0.1.0",
+    "electron-progressbar": "^1.2.0",
     "electron-squirrel-startup": "^1.0.0",
     "electron-updater": "^4.2.5"
   },

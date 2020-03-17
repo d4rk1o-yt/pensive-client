@@ -1,6 +1,6 @@
 {
   "name": "pensive-client",
-  "version": "0.2.6",
+  "version": "0.3.2",
   "description": "This is a end-to-end encrypted messaging platform. Your messages can't be seen by third parties.",
   "main": "client.js",
   "scripts": {

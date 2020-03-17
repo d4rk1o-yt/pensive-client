@@ -1,6 +1,6 @@
 {
-  "name": "pensive-desktop",
-  "version": "0.2.6",
+  "name": "Pensive",
+  "version": "0.3.2",
   "description": "This is a end-to-end encrypted messaging platform. Your messages can't be seen by third parties.",
   "main": "index.js",
   "repository": "https://github.com/d4rk1o-yt/pensive-client.git",
@@ -16,7 +16,7 @@
     "productName": "Pensive",
     "asar": true,
     "win": {
-      "target": "squirrel",
+      "target": "nsis-web",
       "icon": "build/icon.ico",
       "publish": ["github"]
     }
@@ -39,6 +39,10 @@
     "capacitor",
     "electron"
   ],
+  "bugs": {
+    "url": "https://github.com/Zamiell/isaac-racing-client/issues"
+  },
+  "homepage": "https://pensive.connordavis.ml",
   "author": "Connor Davis",
-  "license": "ISC"
+  "license": "GPL-3.0"
 }

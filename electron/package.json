@@ -1,6 +1,6 @@
 {
   "name": "Pensive",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "This is a end-to-end encrypted messaging platform. Your messages can't be seen by third parties.",
   "main": "index.js",
   "repository": "https://github.com/d4rk1o-yt/pensive-client.git",

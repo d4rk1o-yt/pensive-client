@@ -99,6 +99,7 @@ async function createWindow() {
           title: "Pensive",
           body: data.text
         });
+        notification.show();
       }
     } else if (data.type === "progress") {
       log.info(data.text);
@@ -156,6 +157,7 @@ async function createWindow() {
       text: "Update downloaded; will install now",
       type: "text"
     });
+    progressBar.setCompleted();
   });
 
   autoUpdater.on("update-downloaded", info => {

@@ -8,7 +8,7 @@
     "electron:start": "electron ./",
     "pack": "electron-builder --dir",
     "dist": "electron-builder --x64 --windows",
-    "gh-publish": "electron-builder --x64 --windows -p always",
+    "gh-publish": "electron-builder --x64 --windows -p always && electron-builder --x64 --linux -p always && electron-builder --x64 --mac -p always",
     "release": "build"
   },
   "build": {
@@ -21,6 +21,16 @@
       "publish": [
         "github"
       ]
+    },
+    "linux": {
+      "target": "deb",
+      "icon": "build/icon.png",
+      "publish": ["github"]
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "build/icon.icns",
+      "publish": ["github"]
     }
   },
   "dependencies": {

@@ -71,7 +71,6 @@ async function createWindow() {
     mainWindow.webContents.on("dom-ready", () => {
       mainWindow.show();
       mainWindow.webContents.openDevTools();
-      sendStatusToWindow({ text: "Hello", type: "text" });
     });
   }
 
@@ -96,8 +95,7 @@ async function createWindow() {
     }
   };
   // trigger autoupdate check
-  autoUpdater.autoDownload = false;
-  autoUpdater.checkForUpdatesAndNotify();
+  autoUpdater.checkForUpdates();
 
   autoUpdater.on("checking-for-update", () => {
     sendStatusToWindow({ text: "Checking for update...", type: "text" });

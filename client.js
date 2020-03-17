@@ -38,10 +38,15 @@ app.get("", (request, response) => {
 });
 
 app.get("/download", (request, response) => {
-  if (request.query['platform'] === "windows") {
+  if (request.query["platform"] === "windows") {
     response.download(path.join(__dirname, "public", "downloads", "Pensive Setup.exe"));
     return;
   }
+
+  // if (request.query["platform"] === "linux") {
+  //   response.download(path.join(__dirname, "public", "downloads", "Pensive Setup.deb"));
+  //   return;
+  // }
 
   response.render("404", { url: request.query["platform"] });
   return;

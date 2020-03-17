@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap");
+* {
+  margin: 0px;
+  padding: 0px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: #23374d;
+  outline: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+body {
+  background: #eeeeee;
+}
+
+.box {
+  position: relative;
+  width: auto;
+  height: auto;
+  padding: 20px;
+  background: #e5e5e5;
+  border-radius: 10px;
+}
+
+.box .box-header {
+  position: relative;
+  width: auto;
+  height: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.box .box-header .header-title {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.box .box-header .header-subtitle {
+  font-size: 1.5em;
+}
+
+.box .box-content {
+  position: relative;
+  width: auto;
+  height: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+input {
+  position: relative;
+  width: auto;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  padding-left: 10px;
+  text-transform: uppercase;
+  margin: 10px;
+}
+
+button {
+  position: relative;
+  width: auto;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  color: #eeeeee;
+  background: #1089ff;
+  padding: 0px 10px 0px 10px;
+  text-transform: uppercase;
+}
+
+button:hover {
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.135);
+          box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.135);
+}
+
+button:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0px;
+  width: 100vw;
+  height: 40px;
+  background: #e5e5e5;
+  font-weight: 300;
+  line-height: 40px;
+  text-align: center;
+}
+
+span.home-link {
+  font-weight: 600;
+}
+
+span.platform-name {
+  color: #eeeeee;
+}
+
+.center {
+  position: absolute !important;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.click {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 900px) {
+  .box {
+    width: 90vw !important;
+    height: auto;
+    padding: 10px;
+  }
+  .box .box-header {
+    padding: 10px;
+  }
+  .box .box-header .header-title {
+    font-size: 1.5em;
+  }
+  .box .box-header .header-subtitle {
+    font-size: 1em;
+  }
+  .footer {
+    font-size: .8em;
+  }
+}
+/*# sourceMappingURL=global.css.map */

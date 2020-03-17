@@ -1,0 +1,8 @@
+{
+  "appId": "ml.connordavis.pensive",
+  "appName": "Pensive",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "app/dist",
+  "cordova": {}
+}

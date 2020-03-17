@@ -1,0 +1,38 @@
+{
+  "name": "pensive-client",
+  "version": "0.2.1",
+  "description": "This is a end-to-end encrypted messaging platform. Your messages can't be seen by third parties.",
+  "main": "client.js",
+  "scripts": {
+    "build:electron": "cd app && ng build && cd .. && npm run run:electron",
+    "build:electron-aot": "cd app && ng build --prod && cd .. && npm run run:electron",
+    "run:electron": "npx cap copy electron && npx cap copy electron && npx cap open electron",
+    "build-windows": "electron-packager electron/ Pensive --platform=win32 --arch=ia32 --win32metadata.CompanyName=Pensive --win32metadata.ProductName=Pensive --executable-name=pensive-desktop --out=dist/ --asar --overwrite",
+    "build-linux": "electron-packager electron/ Pensive --platform=linux --arch=x64 --out=dist/ --asar --overwrite",
+    "build-mac": "electron-packager electron/ Pensive --platform=darwin --out=dist/ --asar --overwrite"
+  },
+  "keywords": [],
+  "author": "Connor Davis",
+  "license": "ISC",
+  "dependencies": {
+    "@capacitor/android": "^1.5.1",
+    "@capacitor/cli": "^1.5.1",
+    "@capacitor/core": "^1.5.1",
+    "@capacitor/ios": "^1.5.1",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.0.0",
+    "electron-installer-dmg": "^3.0.0",
+    "electron-installer-squirrel-windows": "^1.3.0",
+    "electron-linux-installer": "^0.2.2-beta",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "jquery": "^3.4.1",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0",
+    "uuid": "^7.0.2"
+  },
+  "devDependencies": {
+    "electron": "^8.1.1",
+    "electron-winstaller": "^4.0.0"
+  }
+}

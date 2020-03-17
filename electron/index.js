@@ -4,7 +4,7 @@ if (require("electron-squirrel-startup")) return;
 const { autoUpdater } = require("electron-updater");
 const log = require("electron-log");
 
-const { app, BrowserWindow, autoUpdater, dialog } = require("electron");
+const { app, BrowserWindow, dialog } = require("electron");
 const {
   CapacitorSplashScreen,
   configCapacitor

@@ -1,0 +1,34 @@
+<div class="box center">
+    <div class="box-header">
+        <div class="header-title">Pensive</div>
+        <div class="header-subtitle">This chat app is secured with end-to-end encryption.</div>
+    </div>
+
+    <div class="box-content">
+        <button class="download" type="submit"></button>
+    </div>
+</div>
+
+<script>
+    $(() => {
+        const isAndroid = /(android)/i.test(navigator.userAgent);
+        const isIOS = /(ios)/i.test(navigator.userAgent);
+        const isWindows = /(windows)/i.test(navigator.userAgent);
+        const isMac = /(mac)/i.test(navigator.userAgent);
+        const isLinux = /(linux)/i.test(navigator.userAgent);
+
+        if (isWindows) $(".download").text("Download for Windows");
+        if (isMac) $(".download").text("Download for Mac");
+        if (isLinux) $(".download").text("Download for Linux");
+        if (isAndroid) $(".download").text("Download for Android");
+        if (isIOS) $(".download").text("Download for IOS");
+
+        $(".download").click((e) => {
+            if (isWindows) $(location).attr("href", "/download?platform=windows");
+            if (isMac) $(location).attr("href", "/download?platform=mac");
+            if (isLinux) $(location).attr("href", "/download?platform=linux");
+            if (isAndroid) $(location).attr("href", "/download?platform=android");
+            if (isIOS) $(location).attr("href", "/download?platform=ios");
+        });
+    });
+</script>

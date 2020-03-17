@@ -1,0 +1,42 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This is a end-to-end encrypted messaging platform. Your messages can't be seen by third parties.">
+    
+    <title>Pensive</title>
+
+    <link rel="stylesheet" type="text/css" href="/global.css">
+    <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+    <script>
+        var socket = io();
+        var user = {};
+    </script>
+</head>
+
+<body>
+    {{{ body }}}
+
+    <div class="footer">
+        Brought to you by <span class="home-link" class="click">Connor Davis</span>
+    </div>
+
+    <script>
+        $(".project-link").click((e) => {
+            const project = $(".project-link").attr("name");
+            $(location).attr("href", "http://" + project + ".connordavis.ml");
+        });
+
+        $(".home-link").click((e) => {
+            $(location).attr("href", "http://connordavis.ml");
+        });
+    </script>
+</body>
+
+</html>

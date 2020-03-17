@@ -4,7 +4,7 @@ if (require("electron-squirrel-startup")) return;
 const { autoUpdater } = require("electron-updater");
 const log = require("electron-log");
 
-const { app, BrowserWindow, dialog } = require("electron");
+const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const {
   CapacitorSplashScreen,
   configCapacitor
@@ -105,13 +105,13 @@ app.on("activate", function () {
 const sendStatusToWindow = data => {
   if (data.type === "text") {
     log.info(data.text);
-    if (mainWindow) {
-      mainWindow.webContents.send("notification", data.text);
+    if (ipcMain) {
+      ipcMain.emit("notification", data.text);
     }
   } else if (data.type === "progress") {
     log.info(data.text);
-    if (mainWindow) {
-      mainWindow.webContents.send("progress", data);
+    if (ipcMain) {
+      ipcMain.emit("progress", data);
     }
   }
 };

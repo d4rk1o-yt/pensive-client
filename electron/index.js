@@ -96,26 +96,23 @@ async function createWindow() {
     }
   };
   // trigger autoupdate check
-  autoUpdater.checkForUpdates();
+  autoUpdater.autoDownload = false;
+  autoUpdater.checkForUpdatesAndNotify();
 
   autoUpdater.on("checking-for-update", () => {
     sendStatusToWindow({ text: "Checking for update...", type: "text" });
-    progressBar.setCompleted();
   });
   autoUpdater.on("update-available", info => {
     sendStatusToWindow({ text: "Update available.", type: "text" });
-    progressBar.setCompleted();
   });
   autoUpdater.on("update-not-available", info => {
     sendStatusToWindow({ text: "You are using the latest version.", type: "text" });
-    progressBar.setCompleted();
   });
   autoUpdater.on("error", err => {
     sendStatusToWindow({
       text: `Error in auto-updater: ${err.toString()}`,
       type: "text"
     });
-    progressBar.setCompleted();
   });
   autoUpdater.on("download-progress", progressObj => {
     sendStatusToWindow({
@@ -131,14 +128,12 @@ async function createWindow() {
       text: "Update downloaded; will install now",
       type: "text"
     });
-    progressBar.setCompleted();
   });
 
   autoUpdater.on("update-downloaded", info => {
     // Wait 5 seconds, then quit and install
     // In your application, you don't need to wait 500 ms.
     // You could call autoUpdater.quitAndInstall(); immediately
-    progressBar.setCompleted();
     autoUpdater.quitAndInstall();
   });
 }
